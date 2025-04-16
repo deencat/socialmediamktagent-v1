@@ -26,8 +26,8 @@ The development will be broken down into the following phases, each with specifi
 
 **Deliverables:**
 1. **Project Setup (3 days)**
-   - Initialize Next.js project with App Router
-   - Configure Tailwind CSS and Shadcn UI
+   - [x] Initialize Next.js project with App Router
+   - [x] Configure Tailwind CSS and Shadcn UI
    - Set up Playwright testing framework
    - Create dummy JSON data structure
 
@@ -38,8 +38,8 @@ The development will be broken down into the following phases, each with specifi
    - Mock authentication flow with dummy responses
 
 3. **Dashboard Shell (5 days)**
-   - Responsive layout with sidebar/bottom navigation
-   - Empty widget containers
+   - [x] Responsive layout with sidebar/bottom navigation
+   - [x] Empty widget containers
    - User profile dropdown
    - Notification center UI
    - Theme toggle (light/dark mode)
