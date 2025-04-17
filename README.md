@@ -101,6 +101,15 @@ For testing purposes, you can use these credentials:
 2. Create or update components as needed
 3. Add tests for new features
 4. Ensure all tests pass before submitting changes
+5. Update the session summary in `docs/memory/ChatSessionSummary.md` after significant changes
+
+## Chat Session Memory Management
+
+To maintain context across chat sessions with token limitations:
+
+1. Review `docs/memory/ChatSessionSummary.md` at the start of each new session
+2. Follow the guidance in `docs/memory/ContextLoader.md` for loading context
+3. Update the session summary at the end of productive sessions
 
 ## License
 
