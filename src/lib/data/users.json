@@ -1,0 +1,38 @@
+{
+  "users": [
+    {
+      "id": "user-1",
+      "email": "business@example.com",
+      "name": "John Smith",
+      "role": "sme",
+      "companyName": "Acme Inc.",
+      "avatar": "/avatars/user-1.png",
+      "plan": "premium",
+      "createdAt": "2023-01-15T08:30:00Z",
+      "lastLogin": "2023-06-10T14:22:10Z"
+    },
+    {
+      "id": "user-2",
+      "email": "provider@example.com",
+      "name": "Jane Doe",
+      "role": "provider",
+      "avatar": "/avatars/user-2.png",
+      "level": 3,
+      "points": 1250,
+      "tasksCompleted": 47,
+      "createdAt": "2023-02-20T10:15:00Z",
+      "lastLogin": "2023-06-09T16:45:30Z"
+    },
+    {
+      "id": "user-3",
+      "email": "enterprise@example.com",
+      "name": "Robert Johnson",
+      "role": "sme",
+      "companyName": "Enterprise Solutions Ltd.",
+      "avatar": "/avatars/user-3.png",
+      "plan": "enterprise",
+      "createdAt": "2023-03-05T09:20:00Z",
+      "lastLogin": "2023-06-10T11:30:45Z"
+    }
+  ]
+}

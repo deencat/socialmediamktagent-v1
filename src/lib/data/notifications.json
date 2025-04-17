@@ -1,0 +1,49 @@
+{
+  "notifications": [
+    {
+      "id": "notif-1",
+      "userId": "user-1",
+      "type": "task_completed",
+      "title": "Task Completed",
+      "message": "Your Instagram post has been published successfully.",
+      "read": false,
+      "createdAt": "2023-06-10T13:45:00Z"
+    },
+    {
+      "id": "notif-2",
+      "userId": "user-1",
+      "type": "engagement",
+      "title": "High Engagement",
+      "message": "Your recent post is performing 35% better than average.",
+      "read": true,
+      "createdAt": "2023-06-09T10:30:00Z"
+    },
+    {
+      "id": "notif-3",
+      "userId": "user-1",
+      "type": "system",
+      "title": "System Update",
+      "message": "New features have been added to your dashboard.",
+      "read": false,
+      "createdAt": "2023-06-08T16:20:00Z"
+    },
+    {
+      "id": "notif-4",
+      "userId": "user-2",
+      "type": "reward",
+      "title": "Points Earned",
+      "message": "You earned 50 points for completing a task.",
+      "read": false,
+      "createdAt": "2023-06-10T09:15:00Z"
+    },
+    {
+      "id": "notif-5",
+      "userId": "user-2",
+      "type": "task_available",
+      "title": "New Task Available",
+      "message": "A new high-priority task is available for you.",
+      "read": true,
+      "createdAt": "2023-06-09T14:50:00Z"
+    }
+  ]
+}

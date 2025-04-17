@@ -24,27 +24,27 @@ This document outlines the sprint planning for the Social Media Marketing Agent 
    - [x] Initialize Next.js project with App Router
    - [x] Configure Tailwind CSS and Shadcn UI
    - [x] Set up Playwright testing framework
-   - [ ] Create dummy data structure
+   - [x] Create dummy data structure
    - [ ] Set up project documentation
 
 2. **Authentication UI (5 days)**
    - [x] Design and implement login screen
    - [x] Design and implement registration screen
-   - [ ] Create role selection interface
+   - [x] Create role selection interface
    - [x] Implement form validation
    - [x] Add responsive design for all screens
 
 3. **Navigation Shell (4 days)**
-   - Create responsive AppShell component
-   - Implement sidebar navigation for desktop
-   - Implement bottom navigation for mobile
-   - Add header with user menu
-   - Create responsive layout switching
+   - [x] Create responsive AppShell component
+   - [x] Implement sidebar navigation for desktop
+   - [x] Implement bottom navigation for mobile
+   - [x] Add header with user menu
+   - [x] Create responsive layout switching
 
 4. **Testing & Documentation (2 days)**
    - [x] Write Playwright tests for authentication flows
-   - [ ] Write Playwright tests for navigation components
-   - [ ] Update documentation
+   - [x] Write Playwright tests for navigation components
+   - [x] Update documentation
    - [ ] Fix any identified issues
 
 **Deliverables:**

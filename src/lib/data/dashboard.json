@@ -1,0 +1,117 @@
+{
+  "analytics": {
+    "followers": {
+      "total": 12450,
+      "growth": 320,
+      "growthPercentage": 2.6,
+      "history": [10200, 10500, 10800, 11200, 11600, 12000, 12450]
+    },
+    "engagement": {
+      "rate": 3.8,
+      "change": 0.5,
+      "history": [2.2, 2.5, 2.8, 3.0, 3.2, 3.5, 3.8]
+    },
+    "posts": {
+      "total": 87,
+      "scheduled": 12,
+      "performance": {
+        "excellent": 15,
+        "good": 42,
+        "average": 25,
+        "poor": 5
+      }
+    },
+    "platforms": [
+      {
+        "name": "Instagram",
+        "followers": 5200,
+        "engagement": 4.2,
+        "growth": 3.1
+      },
+      {
+        "name": "Facebook",
+        "followers": 3800,
+        "engagement": 2.8,
+        "growth": 1.5
+      },
+      {
+        "name": "Twitter",
+        "followers": 2100,
+        "engagement": 3.5,
+        "growth": 2.2
+      },
+      {
+        "name": "LinkedIn",
+        "followers": 1350,
+        "engagement": 4.7,
+        "growth": 4.3
+      }
+    ]
+  },
+  "recentActivity": [
+    {
+      "id": "activity-1",
+      "type": "post_published",
+      "platform": "Instagram",
+      "description": "New product announcement post published",
+      "timestamp": "2023-06-10T10:30:00Z",
+      "metrics": {
+        "likes": 245,
+        "comments": 37,
+        "shares": 18
+      }
+    },
+    {
+      "id": "activity-2",
+      "type": "follower_milestone",
+      "platform": "LinkedIn",
+      "description": "Reached 1,000 followers milestone",
+      "timestamp": "2023-06-09T15:45:00Z"
+    },
+    {
+      "id": "activity-3",
+      "type": "engagement_spike",
+      "platform": "Twitter",
+      "description": "Unusual engagement spike detected",
+      "timestamp": "2023-06-08T12:15:00Z",
+      "metrics": {
+        "increase": 210,
+        "percentageChange": 180
+      }
+    },
+    {
+      "id": "activity-4",
+      "type": "scheduled_post",
+      "platform": "Facebook",
+      "description": "Weekly promotion post scheduled",
+      "timestamp": "2023-06-07T09:20:00Z",
+      "scheduledFor": "2023-06-12T18:00:00Z"
+    }
+  ],
+  "quickActions": [
+    {
+      "id": "action-1",
+      "title": "Create Post",
+      "icon": "edit",
+      "path": "/content/create"
+    },
+    {
+      "id": "action-2",
+      "title": "Schedule Content",
+      "icon": "calendar",
+      "path": "/content/schedule"
+    },
+    {
+      "id": "action-3",
+      "title": "View Analytics",
+      "icon": "chart",
+      "path": "/analytics"
+    },
+    {
+      "id": "action-4",
+      "title": "Manage Campaigns",
+      "icon": "megaphone",
+      "path": "/campaigns"
+    }
+  ]
+}

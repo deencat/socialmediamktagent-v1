@@ -34,15 +34,15 @@ The development will be broken down into the following phases, each with specifi
 2. **Authentication UI (4 days)**
    - [x] Login screen
    - [x] Registration screen
-   - [ ] Role selection (SME, Service Provider)
-   - [ ] Mock authentication flow with dummy responses
+   - [x] Role selection (SME, Service Provider)
+   - [x] Mock authentication flow with dummy responses
 
 3. **Dashboard Shell (5 days)**
    - [x] Responsive layout with sidebar/bottom navigation
    - [x] Empty widget containers
-   - User profile dropdown
-   - Notification center UI
-   - Theme toggle (light/dark mode)
+   - [x] User profile dropdown
+   - [x] Notification center UI
+   - [x] Theme toggle (light/dark mode)
 
 4. **Testing & Documentation (2 days)**
    - Playwright tests for all implemented components
