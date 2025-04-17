@@ -28,14 +28,14 @@ The development will be broken down into the following phases, each with specifi
 1. **Project Setup (3 days)**
    - [x] Initialize Next.js project with App Router
    - [x] Configure Tailwind CSS and Shadcn UI
-   - Set up Playwright testing framework
-   - Create dummy JSON data structure
+   - [x] Set up Playwright testing framework
+   - [ ] Create dummy JSON data structure
 
 2. **Authentication UI (4 days)**
-   - Login screen
-   - Registration screen
-   - Role selection (SME, Service Provider)
-   - Mock authentication flow with dummy responses
+   - [x] Login screen
+   - [x] Registration screen
+   - [ ] Role selection (SME, Service Provider)
+   - [ ] Mock authentication flow with dummy responses
 
 3. **Dashboard Shell (5 days)**
    - [x] Responsive layout with sidebar/bottom navigation
