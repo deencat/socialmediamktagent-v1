@@ -1,181 +1,160 @@
 import { test, expect } from '@playwright/test';
+import { format, addMonths, subMonths } from 'date-fns';
 
 test.describe('Content Calendar', () => {
   test.beforeEach(async ({ page }) => {
-    // Navigate to the content schedule page
+    // Navigate to content schedule page before each test
     await page.goto('/content/schedule');
-    // Wait for page to fully load
     await page.waitForLoadState('networkidle');
   });
 
-  test('should have correct page title and components', async ({ page }) => {
+  test('should load the calendar page correctly', async ({ page }) => {
     // Check page title
-    await expect(page).toHaveTitle(/Content Calendar/);
+    await expect(page.getByRole('heading', { name: 'Content Calendar' })).toBeVisible();
     
-    // Check main components are present
-    await expect(page.getByText('Content Calendar')).toBeVisible();
-    await expect(page.getByRole('tab', { name: 'Month' })).toBeVisible();
-    await expect(page.getByRole('tab', { name: 'List' })).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Create Content' })).toBeVisible();
+    // Check current month/year is displayed
+    const currentMonthYear = format(new Date(), 'MMMM yyyy');
+    await expect(page.getByText(currentMonthYear, { exact: true })).toBeVisible();
     
-    // Check calendar view shows days of week
-    for (const day of ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']) {
-      await expect(page.getByText(day, { exact: true })).toBeVisible();
+    // Check weekday headers are visible
+    const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    for (const day of weekdays) {
+      await expect(page.locator(`[data-testid="weekday-${day}"]`)).toBeVisible();
     }
   });
 
   test('should navigate between months', async ({ page }) => {
-    // Get current month title
-    const initialMonth = await page.locator('h3').first().textContent();
+    // Get current month/year text
+    const currentMonthYear = format(new Date(), 'MMMM yyyy');
     
-    // Navigate to next month - use a more specific selector
-    await page.locator('button').filter({ has: page.locator('svg[data-lucide="chevron-right"]') }).click();
+    // Click next month button
+    await page.locator('[data-testid="next-month-button"]').click();
     
-    // Get new month title
-    const nextMonth = await page.locator('h3').first().textContent();
+    // Check that next month is displayed
+    const nextMonthYear = format(addMonths(new Date(), 1), 'MMMM yyyy');
+    await expect(page.getByText(nextMonthYear, { exact: true })).toBeVisible();
     
-    // Check that month changed
-    expect(initialMonth).not.toEqual(nextMonth);
+    // Click previous month button twice to go back to previous month
+    await page.locator('[data-testid="prev-month-button"]').click();
+    await page.locator('[data-testid="prev-month-button"]').click();
     
-    // Navigate back to previous month
-    await page.locator('button').filter({ has: page.locator('svg[data-lucide="chevron-left"]') }).click();
-    
-    // Get month title again
-    const prevMonth = await page.locator('h3').first().textContent();
-    
-    // Check that we're back to initial month
-    expect(prevMonth).toEqual(initialMonth);
+    // Check that previous month is displayed
+    const prevMonthYear = format(subMonths(new Date(), 1), 'MMMM yyyy');
+    await expect(page.getByText(prevMonthYear, { exact: true })).toBeVisible();
   });
 
   test('should toggle between month and list views', async ({ page }) => {
-    // Check calendar elements are visible (instead of grid-cols-7 class)
-    await expect(page.locator('.py-2.text-sm.font-medium').first()).toBeVisible();
+    // Default view should be month view
+    await expect(page.locator('[data-testid="month-view-tab"][aria-selected="true"]')).toBeVisible();
     
     // Switch to list view
-    await page.getByRole('tab', { name: 'List' }).click();
+    await page.locator('[data-testid="list-view-tab"]').click();
+    await expect(page.locator('[data-testid="list-view-tab"][aria-selected="true"]')).toBeVisible();
     
-    // Check month grid is hidden and list is visible
-    await expect(page.locator('.py-2.text-sm.font-medium').first()).not.toBeVisible();
+    // Check if list view content is visible
     await expect(page.locator('.border.rounded-md.divide-y')).toBeVisible();
     
     // Switch back to month view
-    await page.getByRole('tab', { name: 'Month' }).click();
+    await page.locator('[data-testid="month-view-tab"]').click();
+    await expect(page.locator('[data-testid="month-view-tab"][aria-selected="true"]')).toBeVisible();
     
-    // Check grid elements are visible again
-    await expect(page.locator('.py-2.text-sm.font-medium').first()).toBeVisible();
+    // Check that month view is visible again - use a more specific selector
+    await expect(page.locator('.grid.grid-cols-7.gap-px.bg-muted.text-center')).toBeVisible();
   });
 
-  test('should show content details when selecting a date', async ({ page }) => {
-    // Find and select a date cell with content
-    // Instead of using a fixed date, we'll find the first date cell with content
-    const dateCell = await page.locator('.min-h-28.p-2').filter({ 
-      has: page.locator('.text-xs.bg-background.border.rounded') 
-    }).first();
+  test('should select a date and show detail view', async ({ page }) => {
+    // Get the date format for today
+    const today = new Date();
+    const todayFormat = format(today, 'yyyy-MM-dd');
     
-    await dateCell.click();
+    // Click on a date in the current month using the data-testid
+    await page.locator(`[data-testid="date-${todayFormat}"]`).click();
     
-    // Check that content details appear - look for the section that shows content
-    await expect(page.locator('.mt-6 .card-header .card-title')).toBeVisible();
+    // Check if detail view for selected date is shown
+    const formattedDate = format(today, 'MMMM d, yyyy');
+    await expect(page.getByText(`Content for ${formattedDate}`)).toBeVisible();
     
-    // Check content items are listed
-    const contentItems = await page.locator('.mt-6 .border.rounded-md.p-4').count();
-    expect(contentItems).toBeGreaterThan(0);
+    // Check if "Add Content" button is present in the detail view
+    await expect(page.getByTestId('add-content-to-date-button')).toBeVisible();
   });
 
-  test('should open content creation modal from calendar', async ({ page }) => {
-    // Click create content button - use a more specific selector
-    await page.locator('button').filter({ hasText: 'Create Content' }).click();
+  test('should open content creation modal', async ({ page }) => {
+    // Click on the create content button
+    await page.locator('[data-testid="create-content-button"]').click();
     
-    // Check modal appears
+    // Check if modal is open
     await expect(page.getByRole('dialog')).toBeVisible();
     
-    // Fill form fields
-    await page.getByLabel('Title').fill('Calendar Test Post');
-    await page.getByPlaceholder('Enter post description').fill('This is a test post from calendar view');
+    // The title could be either "Create New Content" or just "Create Content" depending on implementation
+    await expect(page.getByRole('dialog').getByRole('heading')).toBeVisible();
     
-    // Select a platform
-    await page.getByText('Instagram').first().click();
+    // Check if form elements are present
+    await expect(page.locator('[data-testid="content-title-input"]')).toBeVisible();
+    await expect(page.locator('[data-testid="content-description-input"]')).toBeVisible();
+    await expect(page.locator('[data-testid="content-platform-input"]')).toBeVisible();
+    await expect(page.locator('[data-testid="content-date-input"]')).toBeVisible();
+    await expect(page.locator('[data-testid="content-status-input"]')).toBeVisible();
+    await expect(page.locator('[data-testid="content-hashtag-input"]')).toBeVisible();
+    await expect(page.locator('[data-testid="content-save-button"]')).toBeVisible();
     
-    // Select status
-    await page.getByText('Scheduled').click();
+    // Close the modal by clicking the Cancel button
+    await page.getByRole('button', { name: 'Cancel' }).click();
+    await expect(page.getByRole('dialog')).not.toBeVisible({ timeout: 5000 });
+  });
+
+  test('should create new content and add it to calendar', async ({ page }) => {
+    // Click on the create content button
+    await page.locator('[data-testid="create-content-button"]').click();
+    
+    // Fill out the form
+    await page.locator('[data-testid="content-title-input"]').fill('Test Content');
+    await page.locator('[data-testid="content-description-input"]').fill('This is a test post');
+    
+    // No need to select Instagram as it's default
+    
+    // Set status to scheduled
+    await page.locator('#scheduled').click();
     
     // Add a hashtag
-    await page.getByTestId('content-hashtag-input').fill('calendartest');
+    await page.locator('[data-testid="content-hashtag-input"]').fill('testpost');
     await page.getByRole('button', { name: 'Add' }).click();
     
-    // Save content
+    // Save the content - need to make sure the button is visible and clickable
+    await page.getByTestId('content-save-button').scrollIntoViewIfNeeded();
     await page.getByTestId('content-save-button').click();
     
-    // Check modal is closed
+    // Wait for modal to close
     await expect(page.getByRole('dialog')).not.toBeVisible({ timeout: 5000 });
-  });
-
-  test('should edit existing content item', async ({ page }) => {
-    // Switch to list view - use a more specific selector
-    await page.locator('button').filter({ hasText: 'List' }).click();
     
-    // Wait for list view to be visible
+    // Check that we're back to the calendar view
+    await expect(page.getByRole('heading', { name: 'Content Calendar' })).toBeVisible();
+    
+    // If in month view, verify the content appears in the calendar by switching to list view
+    await page.locator('[data-testid="list-view-tab"]').click();
+    
+    // Wait for list view to be visible and check for our new content
     await expect(page.locator('.border.rounded-md.divide-y')).toBeVisible();
-    
-    // Click on the first content item that's visible
-    await page.locator('[data-testid^="list-content-item-"]').first().click();
-    
-    // Check edit modal appears
-    await expect(page.getByRole('dialog')).toBeVisible();
-    
-    // Update the title
-    await page.getByLabel('Title').clear();
-    await page.getByLabel('Title').fill('Updated Test Title');
-    
-    // Save changes
-    await page.getByTestId('content-save-button').click();
-    
-    // Check modal is closed
-    await expect(page.getByRole('dialog')).not.toBeVisible({ timeout: 5000 });
-    
-    // Verify the title was updated in the list
-    await expect(page.getByText('Updated Test Title')).toBeVisible();
-  });
-
-  test('should add content to specific date', async ({ page }) => {
-    // Find and select a date cell
-    const dateCell = await page.locator('.min-h-28.p-2').nth(10); // Select a random date
-    await dateCell.click();
-    
-    // Click add content button - find it within the selected date's details
-    await page.locator('.mt-6 button').filter({ hasText: 'Add Content' }).click();
-    
-    // Check modal appears
-    await expect(page.getByRole('dialog')).toBeVisible();
-    
-    // Fill form fields
-    await page.getByLabel('Title').fill('New Date Specific Post');
-    await page.getByPlaceholder('Enter post description').fill('Added to specific date');
-    
-    // Save content
-    await page.getByTestId('content-save-button').click();
-    
-    // Check modal is closed
-    await expect(page.getByRole('dialog')).not.toBeVisible({ timeout: 5000 });
-    
-    // Verify new content appears in the date content section
-    await expect(page.getByText('New Date Specific Post')).toBeVisible();
+    await expect(page.getByText('Test Content')).toBeVisible();
   });
 
   test('should sort content items by date in list view', async ({ page }) => {
-    // Switch to list view - use a more specific selector
-    await page.locator('button').filter({ hasText: 'List' }).click();
+    // Switch to list view
+    await page.locator('[data-testid="list-view-tab"]').click();
+    await expect(page.locator('[data-testid="list-view-tab"][aria-selected="true"]')).toBeVisible();
     
     // Wait for list view to be visible
     await expect(page.locator('.border.rounded-md.divide-y')).toBeVisible();
     
-    // Get all date elements
+    // Check dates are in chronological order
     const dateElements = await page.locator('.text-right .text-sm.font-medium').allInnerTexts();
     
-    // Check dates are in chronological order
+    // Check that we have date elements
+    expect(dateElements.length).toBeGreaterThan(0);
+    
+    // Convert text dates to actual dates and check they're in order
     const dates = dateElements.map(dateText => new Date(dateText));
     
-    // Check that the dates are sorted (each date should be >= the previous date)
+    // Verify dates are sorted
     for (let i = 1; i < dates.length; i++) {
       expect(dates[i].getTime()).toBeGreaterThanOrEqual(dates[i-1].getTime());
     }

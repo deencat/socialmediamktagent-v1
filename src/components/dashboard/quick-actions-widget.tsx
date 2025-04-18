@@ -1,46 +1,53 @@
 "use client";
 
-import { Plus, Calendar, BarChart3, Megaphone } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { HomeIcon, CalendarIcon, BarChart3Icon, LayoutGridIcon } from "lucide-react";
 import Link from "next/link";
-import { getQuickActions } from "@/lib/data";
 
 interface QuickActionsWidgetProps {
   fullWidth?: boolean;
 }
 
+// QuickAction type definition
+type QuickAction = {
+  id: string;
+  title: string;
+  icon: React.ReactNode;
+  path: string;
+  color: string;
+};
+
 export function QuickActionsWidget({ fullWidth = false }: QuickActionsWidgetProps) {
-  // Get quick actions from data
-  const actions = [
+  // Define quick actions
+  const actions: QuickAction[] = [
     {
-      id: "action-1",
+      id: "create-post",
       title: "Create Post",
-      icon: <Plus className="h-4 w-4 mr-2" />,
+      icon: <HomeIcon className="h-5 w-5" />,
       path: "/content/create",
-      color: "bg-blue-500"
+      color: "bg-blue-500",
     },
     {
-      id: "action-2",
+      id: "schedule-content",
       title: "Schedule Content",
-      icon: <Calendar className="h-4 w-4 mr-2" />,
+      icon: <CalendarIcon className="h-5 w-5" />,
       path: "/content/schedule",
-      color: "bg-green-500"
+      color: "bg-purple-500",
     },
     {
-      id: "action-3",
+      id: "view-analytics",
       title: "View Analytics",
-      icon: <BarChart3 className="h-4 w-4 mr-2" />,
+      icon: <BarChart3Icon className="h-5 w-5" />,
       path: "/analytics",
-      color: "bg-purple-500"
+      color: "bg-green-500",
     },
     {
-      id: "action-4",
+      id: "manage-campaigns",
       title: "Manage Campaigns",
-      icon: <Megaphone className="h-4 w-4 mr-2" />,
+      icon: <LayoutGridIcon className="h-5 w-5" />,
       path: "/campaigns",
-      color: "bg-orange-500"
-    }
+      color: "bg-amber-500",
+    },
   ];
 
   return (
@@ -50,22 +57,24 @@ export function QuickActionsWidget({ fullWidth = false }: QuickActionsWidgetProp
         <CardDescription>Common tasks and shortcuts</CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-2 gap-4">
           {actions.map((action) => (
-            <Button
+            <Link
               key={action.id}
-              variant="outline"
-              className="flex items-center justify-start h-auto py-3"
-              asChild
+              href={action.path}
               data-testid={`quick-action-${action.id}`}
             >
-              <Link href={action.path}>
-                <div className={`${action.color} rounded-full p-1 text-white mr-3`}>
+              <div
+                className={`flex flex-col items-center justify-center p-4 rounded-lg transition-all duration-200 hover:shadow-md hover:scale-105 ${action.color} bg-opacity-10 hover:bg-opacity-20`}
+              >
+                <div
+                  className={`p-2 rounded-full ${action.color} text-white mb-2`}
+                >
                   {action.icon}
                 </div>
-                <span>{action.title}</span>
-              </Link>
-            </Button>
+                <span className="text-sm font-medium">{action.title}</span>
+              </div>
+            </Link>
           ))}
         </div>
       </CardContent>
