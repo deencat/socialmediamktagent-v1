@@ -75,10 +75,10 @@ The development will be broken down into the following phases, each with specifi
    - [x] Post preview cards
 
 3. **Brand Voice Settings (5 days)**
-   - [ ] Onboarding questionnaire UI
-   - [ ] Brand voice preview
-   - [ ] Template library interface
-   - [ ] Language selection (English, Cantonese, Mandarin)
+   - [x] Onboarding questionnaire UI
+   - [x] Brand voice preview
+   - [x] Template library interface
+   - [x] Language selection (English, Cantonese, Mandarin)
 
 4. **Testing & Documentation (3 days)** ✓
    - [x] Playwright tests for dashboard framework
@@ -219,30 +219,18 @@ Tasks are ordered chronologically from top to bottom.
 - [x] Update documentation
 
 #### Phase 2: SME Dashboard & Content Management (Current Phase)
-- [x] Create dashboard layout with widget grid
-- [x] Implement widget container component
-- [x] Add drag-and-drop functionality for widgets
-- [x] Create widget configuration modal
-- [x] Design and implement analytics overview widget
-- [x] Create mini charts for key metrics
-- [x] Add period selector
-- [x] Implement responsive design
-- [x] Write Playwright tests for dashboard components
-- [x] Write Playwright tests for analytics widget
-- [x] Write Playwright tests for settings page
-- [x] Write Playwright tests for all major pages (analytics, tasks, rewards, community)
-- [x] Fix identified issues with missing components (Badge)
-- [x] Create monthly/weekly calendar view for content calendar widget
-- [x] Implement post preview cards for content calendar
-- [x] Add drag-and-drop scheduling to calendar
-- [x] Create content creation modal with form validation
-- [x] Add hashtag suggestion interface
-- [x] Write Playwright tests for content calendar functions
-- [x] Design and implement quick actions widget
-- [x] Create recent activity feed widget
-- [x] Add interactive elements to activity feed
-- [x] Implement responsive design for new widgets
-- [x] Update documentation with new components
+- [x] Design and implement dashboard layout with widget grid
+- [x] Create widget container with drag-and-drop functionality
+- [x] Add widget configuration modal
+- [x] Implement analytics overview widget
+- [x] Create quick actions widget
+- [x] Add recent activity feed
+- [x] Implement engagement stats widget
+- [x] Design and implement content calendar widget
+- [x] Create content creation modal
+- [x] Add form validation
+- [x] Design and implement brand voice questionnaire
+- [x] Add comprehensive Playwright tests for brand voice questionnaire
 
 ### In Progress Tasks
 
@@ -251,19 +239,15 @@ Tasks are ordered chronologically from top to bottom.
 ### Pending Tasks (Prioritized)
 
 #### Sprint 3: Content Management
-- [ ] Design and implement multi-platform content editor
 - [ ] Create media upload/preview component
 - [ ] Add hashtag suggestion interface
 - [ ] Implement scheduling options
-- [ ] Add form validation
 - [ ] Create full-screen calendar view
 - [ ] Implement day, week, month views
 - [ ] Add detailed content scheduling interface
-- [ ] Design and implement brand voice questionnaire
 - [ ] Create brand voice preview component
 - [ ] Add template selection interface
 - [ ] Implement language selection
-- [ ] Write Playwright tests for content management components
 
 ### Backlog Tasks
 
