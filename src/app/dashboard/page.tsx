@@ -7,6 +7,7 @@ import { EngagementStatsWidget } from "@/components/dashboard/engagement-stats-w
 import { CampaignLauncherWidget } from "@/components/dashboard/campaign-launcher-widget";
 import { AnalyticsOverviewWidget } from "@/components/dashboard/analytics-overview-widget";
 import { RecentActivityWidget } from "@/components/dashboard/recent-activity-widget";
+import { QuickActionsWidget } from "@/components/dashboard/quick-actions-widget";
 import { DashboardGrid, WidgetItem } from "@/components/dashboard/dashboard-grid";
 import { WidgetContainer } from "@/components/dashboard/widget-container";
 import { WidgetConfigModal } from "@/components/dashboard/widget-config-modal";
@@ -59,6 +60,20 @@ export default function DashboardPage() {
           onRemove={() => handleRemoveWidget("content-calendar")}
         >
           <ContentCalendarWidget />
+        </WidgetContainer>
+      ),
+    },
+    {
+      id: "quick-actions",
+      width: "small",
+      component: (
+        <WidgetContainer 
+          id="quick-actions" 
+          title="Quick Actions"
+          onConfigure={() => handleConfigureWidget("quick-actions")}
+          onRemove={() => handleRemoveWidget("quick-actions")}
+        >
+          <QuickActionsWidget />
         </WidgetContainer>
       ),
     },
