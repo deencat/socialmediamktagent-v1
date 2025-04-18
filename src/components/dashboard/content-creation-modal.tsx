@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Calendar as CalendarIcon, Instagram, MessageCircle, Image, X } from "lucide-react";
+import { Calendar as CalendarIcon, Instagram, MessageCircle, Image, X, Facebook } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -26,7 +26,7 @@ export interface ContentItem {
   title: string;
   description?: string;
   date: string;
-  platform: "instagram" | "threads";
+  platform: "instagram" | "threads" | "facebook" | "twitter" | "linkedin";
   status: "scheduled" | "published" | "draft";
   hashtags?: string[];
 }
@@ -116,8 +116,8 @@ export function ContentCreationModal({
             <Label>Platform</Label>
             <RadioGroup
               value={content.platform}
-              onValueChange={(value) => setContent({ ...content, platform: value as "instagram" | "threads" })}
-              className="flex gap-4"
+              onValueChange={(value) => setContent({ ...content, platform: value as "instagram" | "threads" | "facebook" | "twitter" | "linkedin" })}
+              className="flex flex-wrap gap-4"
               data-testid="content-platform-input"
             >
               <div className="flex items-center space-x-2">
@@ -130,6 +130,12 @@ export function ContentCreationModal({
                 <RadioGroupItem value="threads" id="threads" />
                 <Label htmlFor="threads" className="flex items-center gap-1.5">
                   <MessageCircle className="h-4 w-4" /> Threads
+                </Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="facebook" id="facebook" />
+                <Label htmlFor="facebook" className="flex items-center gap-1.5">
+                  <Facebook className="h-4 w-4" /> Facebook
                 </Label>
               </div>
             </RadioGroup>
