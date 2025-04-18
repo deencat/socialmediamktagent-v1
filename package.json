@@ -14,7 +14,9 @@
     "memory-example": "node scripts/memory/memory-example.js",
     "memory-remove": "node scripts/memory/remove-latest-memory.js",
     "memory-get-latest": "node scripts/memory/get-latest-memory.js",
-    "memory-add-conversation": "node scripts/memory/add-conversation-memory.js"
+    "memory-add-conversation": "node scripts/memory/add-conversation-memory.js",
+    "memory-ensure": "node scripts/memory/ensure-memory-running.js",
+    "memory-verify": "node scripts/memory/verify-memory-system.js"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

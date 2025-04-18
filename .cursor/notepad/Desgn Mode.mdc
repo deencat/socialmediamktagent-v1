@@ -1,6 +1,12 @@
----
-description: 
-globs: 
-alwaysApply: undefined
----
- 
+- We are in prototyping mode
+- Develop frontend only, we are mocking up the interface
+- Use dummy JSON to represent data
+- Link all components for navigation
+- Make buttons responsive
+- Don't connect to backend logic
+- Always check to make sure the project management document is up to date
+- Always use npm run memory-stub before development sessions
+- Always check to make sure the project management document is up to date
+- Always add newly changed features to Playwright tests and run the full regression test after each change
+- Make sure to check for and terminate any lingering Playwright report server processes before running tests again
+- Always check the problems window for issues and fix them 
