@@ -8,13 +8,13 @@
     "start": "next start",
     "lint": "next lint",
     "test": "playwright test",
-    "memory-init": "node memory-system.js",
-    "memory-server": "node memory-api.js",
-    "memory-stub": "node memory-stub.js",
-    "memory-example": "node memory-example.js",
-    "memory-remove": "node remove-latest-memory.js",
-    "memory-get-latest": "node get-latest-memory.js",
-    "memory-add-conversation": "node add-conversation-memory.js"
+    "memory-init": "node scripts/memory/memory-system.js",
+    "memory-server": "node scripts/memory/memory-api.js",
+    "memory-stub": "node scripts/memory/memory-stub.js",
+    "memory-example": "node scripts/memory/memory-example.js",
+    "memory-remove": "node scripts/memory/remove-latest-memory.js",
+    "memory-get-latest": "node scripts/memory/get-latest-memory.js",
+    "memory-add-conversation": "node scripts/memory/add-conversation-memory.js"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

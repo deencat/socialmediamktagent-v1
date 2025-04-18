@@ -10,7 +10,7 @@ This platform helps SMEs grow their social media presence through:
 - Analytics and performance insights
 - Multi-platform support (Instagram, Threads, etc.)
 
-## Development Mode
+## Development Status
 
 Currently, this project is in **prototyping mode**:
 - Frontend-only development with mocked data
@@ -35,75 +35,67 @@ cd social-media-marketing-agent
 
 # Install dependencies
 npm install
-# or
-yarn install
 ```
 
 ### Running the Development Server
 
 ```bash
+# Start the memory system first
+npm run memory-stub
+
+# In a new terminal, start the development server
 npm run dev
-# or
-yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
-## Testing
-
-This project uses Playwright for end-to-end testing.
-
-```bash
-# Run tests
-npm run test
-# or
-yarn test
-
-# View test report
-npm run test:report
-# or
-yarn test:report
-```
-
 ## Project Structure
 
 ```
-├── src/
-│   ├── app/             # Next.js App Router pages
-│   ├── components/      # React components
-│   ├── lib/             # Utility functions and hooks
-│   └── styles/          # Global styles
-├── tests/               # Playwright tests
-└── public/              # Static assets
+├── app/              # Next.js App Router pages
+├── components/       # React components
+├── lib/              # Utility functions and hooks
+├── styles/           # Global styles
+├── docs/             # Project documentation
+├── scripts/          # Utility scripts
+│   └── memory/       # Memory system implementation
+├── tests/            # Playwright tests
+└── public/           # Static assets
 ```
 
-## Chat Session Memory Management
+## Documentation
 
-To maintain context across chat sessions with token limitations:
+Comprehensive documentation is available in the `docs` directory:
 
-1. Review `docs/memory/ChatSessionSummary.md` at the start of each new session
-2. Follow the guidance in `docs/memory/ContextLoader.md` for loading context
-3. Update the session summary at the end of productive sessions
+### Project Management
+
+- [Product Management Plan](./docs/Product_Management_Plan.md) - Overall development approach
+- [Project Management Document](./docs/Project_Management_Document.md) - Project tracking
+- [Sprint Planning](./docs/Sprint_Planning.md) - Sprint schedule and tasks
+
+### Technical Documentation
+
+- [Project Setup Guide](./docs/Project_Setup_Guide.md) - Development environment setup
+- [Component Library Plan](./docs/Component_Library_Plan.md) - UI components
+- [Testing Strategy](./docs/Testing_Strategy.md) - Testing approach
 
 ## Memory System
 
-This project includes a memory system that maintains context between sessions:
+This project includes a local memory system that maintains context between sessions:
 
 ### Memory Server
 
 ```bash
-# Start the memory server manually
+# Start the memory server
 npm run memory-stub
 ```
 
 The memory server runs on port 3100 and provides:
-- Persistent storage of project information
+- Persistent storage of project information in memory.json
 - Entity and relationship management
 - Memory API for accessing stored data
 
 ### Memory System Commands
-
-This project provides several commands to manage the memory system:
 
 #### Service Management
 ```bash
@@ -114,10 +106,10 @@ npm run memory-stub
 npm run memory-init
 
 # Check memory service health
-./check-memory-status.sh
+./scripts/memory/check-memory-status.sh
 
 # Start/restart the memory service
-./start-memory-service.sh
+./scripts/memory/start-memory-service.sh
 ```
 
 #### Memory Operations
@@ -135,19 +127,30 @@ npm run memory-remove
 npm run memory-example
 ```
 
-All memory entries are stored in `memory.json` in the project root directory.
+### Memory Architecture
 
-### Auto-Start Configuration
+The memory system consists of:
+1. **Local Memory Storage** - Uses a JSON file to store entities and relations
+2. **Memory Server** - Simple HTTP server that provides the memory API
+3. **Client Library** - JavaScript client for interacting with the memory system
 
-The memory server is configured to start automatically when you log in:
-- Uses macOS LaunchAgent to run on startup
-- Auto-checks every 2 hours to ensure the service is running
-- See `MEMORY-AUTOSTART.md` for details and troubleshooting
+Core components:
+- `memory-stub.js`: Local memory server implementation
+- `memory-client.js`: Client library for accessing memory
+- `memory-system.js`: Direct file-based memory system
+- `memory.json`: Storage file for all memory data
 
-### Memory Management UI
+## Testing
 
-A web interface for managing memory entities is available at:
-- [http://localhost:3000/memory](http://localhost:3000/memory)
+This project uses Playwright for end-to-end testing.
+
+```bash
+# Run tests
+npm run test
+
+# View test report
+npm run test:report
+```
 
 ## User Roles
 
@@ -169,11 +172,21 @@ For testing purposes, you can use these credentials:
 
 ## Contributing
 
-1. Make sure to follow the design mode guidelines in `Design Mode.md`
-2. Create or update components as needed
-3. Add tests for new features
-4. Ensure all tests pass before submitting changes
-5. Update the session summary in `docs/memory/ChatSessionSummary.md` after significant changes
+1. Make sure to follow the design mode guidelines
+2. Start the memory server before development (npm run memory-stub)
+3. Create or update components as needed
+4. Add tests for new features
+5. Ensure all tests pass before submitting changes
+
+## Development Approach
+
+The project follows a prototype-first approach:
+
+1. **Phased Development:** Breaking down the project into manageable phases
+2. **Component-Based Architecture:** Building reusable UI components
+3. **Comprehensive Testing:** Using Playwright for automated testing
+4. **Responsive Design:** Ensuring the application works on all device sizes
+5. **Documentation-Driven:** Maintaining up-to-date documentation
 
 ## License
 
