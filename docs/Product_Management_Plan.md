@@ -69,10 +69,10 @@ The development will be broken down into the following phases, each with specifi
    - [ ] Engagement stats widget
 
 2. **Content Calendar (1 week)**
-   - [ ] Monthly/weekly calendar view
-   - [ ] Drag-and-drop scheduling interface
-   - [ ] Content creation modal
-   - [ ] Post preview cards
+   - [x] Monthly/weekly calendar view
+   - [x] Drag-and-drop scheduling interface
+   - [x] Content creation modal
+   - [x] Post preview cards
 
 3. **Brand Voice Settings (5 days)**
    - [ ] Onboarding questionnaire UI
@@ -88,7 +88,7 @@ The development will be broken down into the following phases, each with specifi
    - [x] Playwright tests for tasks page
    - [x] Playwright tests for rewards page  
    - [x] Playwright tests for community page
-   - [ ] Update product management document
+   - [x] Update project management document
    - [x] Fix identified issues with missing components (Badge)
 
 ### Phase 3: Service Provider Experience

@@ -12,7 +12,7 @@ try {
 }
 
 // Start the memory server in background
-const server = require('child_process').spawn('npx', ['-y', '@modelcontextprotocol/server-memory'], {
+const server = require('child_process').spawn('npx', ['-y', '@modelcontextprotocol/server-memory', '--port', '3100'], {
   detached: true,
   stdio: 'ignore'
 });
@@ -23,7 +23,7 @@ setTimeout(() => {
   initializeMemory();
   // Don't kill the server as it needs to stay running
   console.log('Memory initialization complete. You can now use the MCP memory server.');
-}, 2000);
+}, 5000);
 
 async function initializeMemory() {
   console.log('Initializing project memory...');
@@ -100,7 +100,7 @@ async function initializeMemory() {
   // Use fetch to call the MCP server API
   try {
     // Create entities
-    const entitiesResponse = await fetch('http://localhost:3000/mcp/memory/create_entities', {
+    const entitiesResponse = await fetch('http://localhost:3100/mcp/memory/create_entities', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ entities })
@@ -113,7 +113,7 @@ async function initializeMemory() {
     console.log('Created initial entities');
     
     // Create relations
-    const relationsResponse = await fetch('http://localhost:3000/mcp/memory/create_relations', {
+    const relationsResponse = await fetch('http://localhost:3100/mcp/memory/create_relations', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ relations })

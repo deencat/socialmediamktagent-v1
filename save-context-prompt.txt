@@ -1,0 +1,8 @@
+Before we finish today's session, please:
+
+1. Summarize what we've accomplished in this conversation
+2. Note any key decisions, challenges solved, or open questions
+3. Create memory entries for any new components/features we've discussed
+4. Save the most important context from our discussion
+
+I'm concerned we might be approaching token limits, so please prioritize saving our most important work. 

@@ -1,0 +1,10 @@
+{
+    "mcp": {
+      "providers": [
+        {
+          "type": "memory",
+          "url": "http://localhost:3100/mcp/v1"
+        }
+      ]
+    }
+  }

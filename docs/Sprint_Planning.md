@@ -73,10 +73,10 @@ This document outlines the sprint planning for the Social Media Marketing Agent 
    - [x] Implement responsive design
 
 3. **Content Calendar Widget (4 days)**
-   - [ ] Create monthly/weekly calendar view
-   - [ ] Implement post preview cards
-   - [ ] Add drag-and-drop scheduling
-   - [ ] Create quick action buttons
+   - [x] Create monthly/weekly calendar view
+   - [x] Implement post preview cards
+   - [x] Add drag-and-drop scheduling
+   - [x] Create quick action buttons
 
 4. **Quick Actions & Recent Activity (3 days)**
    - [ ] Design and implement quick actions widget
@@ -95,7 +95,7 @@ This document outlines the sprint planning for the Social Media Marketing Agent 
 **Deliverables:**
 - [x] Functional dashboard with widget grid
 - [x] Interactive analytics widget
-- [ ] Content calendar widget with scheduling
+- [x] Content calendar widget with scheduling
 - [ ] Quick actions and recent activity widgets
 - [x] Playwright tests for all implemented components
 - [x] Complete test coverage for all major pages

@@ -1,48 +1,33 @@
-# MCP Memory Integration
+# Memory Integration
 
-This project uses the ModelContextProtocol (MCP) memory server to maintain conversation context across chat sessions. This allows Claude to remember project details, decisions, and progress even when token limits are reached.
+This project uses a simple memory system to maintain conversation context across chat sessions. This allows Claude to remember project details, decisions, and progress even when token limits are reached.
 
 ## Setup
 
-1. Install the MCP memory server:
-   ```bash
-   npm run setup-mcp
-   ```
+1. Start the memory server:
+```bash
+npm run memory-stub
+```
 
-2. This will:
-   - Install the @modelcontextprotocol/server-memory package
-   - Create the claude_desktop_config.json file
-   - Set up memory persistence using ./memory.json
+2. The memory server will start on port 3100 and store data in the memory.json file.
 
-## Usage
+## Features
 
-1. Start Claude Desktop
+The memory server provides:
+- Persistent memory storage across chat sessions
+- Simple entity storage system
+- Access to project information and history
 
-2. Create a new conversation
+## Memory Components
 
-3. Use the system prompt from `docs/memory/SystemPrompt.md` in your Claude settings:
-   - Go to Claude settings
-   - Paste the content of SystemPrompt.md into Custom Instructions
-   - Start your conversation
+- `memory-stub.js`: Simple local memory server
+- `memory-system.js`: Memory system initialization
+- `memory-api.js`: API endpoints for memory access
 
-4. At the beginning of each conversation, Claude will retrieve relevant context from the previous sessions
+## Documentation
 
-## How It Works
+- `SystemPrompt.md`: Memory system instructions for Claude
+- `ChatSessionSummary.md`: Summary of recent development sessions
+- `ContextLoader.md`: Guide for loading context efficiently
 
-The MCP memory server provides:
-
-1. **Entity Management**: Stores information about project components, features, and technical decisions
-2. **Relation Tracking**: Maintains connections between different project elements
-3. **Observation Storage**: Keeps track of facts and information about each entity
-
-The system prompt instructs Claude to:
-- Retrieve relevant memory at the start of each conversation
-- Update the memory with new information during the session
-- Summarize key information at the end of each session
-
-## Manual Updates
-
-You can update the ChatSessionSummary.md file manually as needed to ensure critical information is preserved.
-
-For more details on the MCP memory server, see: 
-https://github.com/modelcontextprotocol/servers/tree/main/src/memory 
+For more details on memory architecture, see the comments in each file. 

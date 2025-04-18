@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { getCurrentUser } from '@/lib/data';
 
 export default function UserMenu() {
@@ -32,7 +33,7 @@ export default function UserMenu() {
       >
         <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
           {user.avatar ? (
-            <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" />
+            <Image src={user.avatar} alt={user.name} width={32} height={32} className="w-full h-full object-cover" />
           ) : (
             <span className="text-sm font-medium text-gray-600">
               {user.name.charAt(0)}

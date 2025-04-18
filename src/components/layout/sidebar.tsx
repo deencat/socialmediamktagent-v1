@@ -9,7 +9,8 @@ import {
   BarChart, 
   Settings, 
   Users,
-  MessageSquare
+  MessageSquare,
+  Database
 } from "lucide-react";
 
 export function Sidebar() {
@@ -21,6 +22,7 @@ export function Sidebar() {
     { name: "Rewards", href: "/rewards", icon: Gift },
     { name: "Analytics", href: "/analytics", icon: BarChart },
     { name: "Community", href: "/community", icon: MessageSquare },
+    { name: "Memory", href: "/memory", icon: Database },
     { name: "Settings", href: "/settings", icon: Settings },
   ];
 
